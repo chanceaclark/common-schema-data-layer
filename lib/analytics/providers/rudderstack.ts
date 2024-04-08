@@ -23,5 +23,13 @@ export function RudderstackProvider({
         rudderAnalytics.page('Product', 'Product viewed', product);
       },
     },
-  };
+    cart: {
+      added: function (product) {
+        // You can access the list of products using the symbol
+        // this.metadata.products
+        // @ts-expect-error testing purposes
+        rudderAnalytics.track('Product added', product);
+      }
+    }
+  }
 }

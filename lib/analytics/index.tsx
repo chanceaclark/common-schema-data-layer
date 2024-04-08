@@ -9,5 +9,17 @@ export function Analytics(config: AnalyticsConfig): Analytics {
         });
       },
     },
+    cart: {
+      metadata: {
+        products: []
+      },
+      added: function(product) {
+        this.metadata.products.push(product);
+
+        config.providers.forEach((provider) => {
+          provider.cart.added(product, this.metadata);
+        });
+      }
+    }
   };
 }
